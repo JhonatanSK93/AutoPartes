@@ -1,37 +1,44 @@
 package com.tecser.autopartes.adapter.out.persistence;
 
-import com.tecser.autopartes.adapter.out.persistence.repository.ParteJpaRepository;
 import com.tecser.autopartes.domain.model.Parte;
 import com.tecser.autopartes.domain.port.out.ParteRepositoryPort;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import com.tecser.autopartes.adapter.out.persistence.repository.ParteJpaRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-@RequiredArgsConstructor
+@Component
 public class ParteRepositoryAdapter implements ParteRepositoryPort {
 
-    private final ParteJpaRepository jpaRepository;
+    private final ParteJpaRepository repository;
 
-    @Override
-    public List<Parte> findAll() {
-        return jpaRepository.findAll();
+    public ParteRepositoryAdapter(ParteJpaRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public Optional<Parte> findById(String id) {
-        return jpaRepository.findById(id);
+    public Parte guardar(Parte parte) {
+        return repository.save(parte);
     }
 
     @Override
-    public Parte save(Parte parte) {
-        return jpaRepository.save(parte);
+    public List<Parte> listar() {
+        return repository.findAll();
     }
 
     @Override
-    public void deleteById(String id) {
-        jpaRepository.deleteById(id);
+    public Optional<Parte> buscarPorId(String id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public Parte actualizar(Parte parte) {
+        return repository.save(parte); // JPA lo actualiza si ya existe
+    }
+
+    @Override
+    public void eliminar(String id) {
+        repository.deleteById(id);
     }
 }

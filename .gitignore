@@ -1,9 +1,35 @@
-/target
-/.idea
-*.iml
-*.log
+# Java
 *.class
-/.vscode
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+
+# Eclipse / IntelliJ
+*.iml
+.idea/
+*.ipr
+*.iws
+*.classpath
+*.project
+target/
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Spring Boot devtools
+spring-boot-devtools-*
+
+# OS
 .DS_Store
-*.db
-.env
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Config
+application.properties
+application.yml

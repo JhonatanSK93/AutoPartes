@@ -1,44 +1,86 @@
 package com.tecser.autopartes.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "partes")
 public class Parte {
 
     @Id
-    private String id;
+    private String codigoParte; // Ej: "PRTA_0012"
 
     @Column(nullable = false)
     private String nombre;
 
-    private String tipo;
+    private String descripcion;
 
-    private String posicion;
+    @Column(name = "parte_ubicacion")
+    private String parteUbicacion;
+
+    private Double precio;
+
+    @Column(name = "cantidad_actual")
+    private Integer cantidadActual;
 
     // Constructor completo
-    public Parte(String id, String nombre, String tipo, String posicion) {
-        this.id = id;
+    public Parte(String codigoParte, String nombre, String descripcion, String parteUbicacion, Double precio, Integer cantidadActual) {
+        this.codigoParte = codigoParte;
         this.nombre = nombre;
-        this.tipo = tipo;
-        this.posicion = posicion;
+        this.descripcion = descripcion;
+        this.parteUbicacion = parteUbicacion;
+        this.precio = precio;
+        this.cantidadActual = cantidadActual;
     }
 
     // Constructor vacío
     public Parte() {}
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    // Getters y Setters
+    public String getCodigoParte() {
+        return codigoParte;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setCodigoParte(String codigoParte) {
+        this.codigoParte = codigoParte;
+    }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getPosicion() { return posicion; }
-    public void setPosicion(String posicion) { this.posicion = posicion; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getParteUbicacion() {
+        return parteUbicacion;
+    }
+
+    public void setParteUbicacion(String parteUbicacion) {
+        this.parteUbicacion = parteUbicacion;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public Integer getCantidadActual() {
+        return cantidadActual;
+    }
+
+    public void setCantidadActual(Integer cantidadActual) {
+        this.cantidadActual = cantidadActual;
+    }
 }

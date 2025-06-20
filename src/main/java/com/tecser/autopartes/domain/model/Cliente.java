@@ -1,41 +1,50 @@
 package com.tecser.autopartes.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+import java.util.List;
+
 
 @Entity
 @Table(name = "clientes")
 public class Cliente {
 
     @Id
-    private String id;
+    @Column(name = "cedulaCliente")
+    private String cedulaCliente;
 
     @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = false, unique = true)
-    private String identificacion;
+    private String apellido;
 
-    private String telefono;
+    private Long telefono;
+
+    private String direccion;
+
+    @Column(name = "correo_electronico")
+    private String correoElectronico;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Vehiculo> vehiculos;
 
     public Cliente() {
     }
 
-    public Cliente(String id, String nombre, String identificacion, String telefono) {
-        this.id = id;
+    public Cliente(String cedulaCliente, String nombre, String apellido, Long telefono, String direccion, String correoElectronico) {
+        this.cedulaCliente = cedulaCliente;
         this.nombre = nombre;
-        this.identificacion = identificacion;
+        this.apellido = apellido;         
         this.telefono = telefono;
+        this.direccion = direccion;
+        this.correoElectronico = correoElectronico;
     }
 
-    public String getId() {
-        return id;
+    public String getCedulaCliente() {
+        return cedulaCliente;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCedulaCliente(String cedulaCliente) {
+        this.cedulaCliente = cedulaCliente;
     }
 
     public String getNombre() {
@@ -46,19 +55,45 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public String getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public List<Vehiculo> getVehiculos() {
+    return vehiculos;
+    }
+
+    public void setVehiculos(List<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+
+    
 }

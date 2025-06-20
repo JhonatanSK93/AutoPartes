@@ -1,18 +1,54 @@
 package com.tecser.autopartes.domain.model;
 
-import java.util.UUID;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "administradores")
 public class Administrador {
-    private UUID id;
-    private String nombre;
-    private String clave;
 
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
+    @Id
+    @Column(nullable = false, unique = true)
+    private String cedula;
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    @Column(nullable = false)
+    private String nombreCompleto;
 
-    public String getClave() { return clave; }
-    public void setClave(String clave) { this.clave = clave; }
+    @Column(nullable = false)
+    private String contrasena;
+
+    // --- Constructores ---
+
+    public Administrador() {}
+
+    public Administrador(String cedula, String nombreCompleto, String contrasena) {
+        this.cedula = cedula;
+        this.nombreCompleto = nombreCompleto;
+        this.contrasena = contrasena;
+    }
+
+    // --- Getters y Setters ---
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 }

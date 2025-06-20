@@ -6,8 +6,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ParteRepositoryPort {
-    List<Parte> findAll();
-    Optional<Parte> findById(String id);
-    Parte save(Parte parte);
-    void deleteById(String id);
+
+    Parte guardar(Parte parte);
+
+    List<Parte> listar();
+
+    Optional<Parte> buscarPorId(String codigoParte);
+
+    Parte actualizar(Parte parte);
+
+    void eliminar(String codigoParte);
 }
